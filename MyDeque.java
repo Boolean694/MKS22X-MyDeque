@@ -52,10 +52,25 @@ public class MyDeque<E> {
     if(size + 1 >= data.length) {
       copyData();
     }
+    if(data[data.length - 1] == null) {
+      data[data.length - 1] = e;
+      size++;
+      return;
+    }
+    int qi = data.length - 1;
+    while(qi >= 0 && data[qi] != null) {
+      qi--;
+    }
+    for(int qw = qi; qw < data.length - 1; qw++) {
+      data[qw] = data[qw + 1];
+    }
+    size++;
+    data[data.length - 1] = e;
   }
   public E removeFirst() throws NoSuchElementException {
     E ret = data[0];
     data[0] = null;
+    size--;
     return ret;
   }
   public E removeLast() throws NoSuchElementException {
@@ -67,6 +82,7 @@ public class MyDeque<E> {
         break;
       }
     }
+    size--;
     return ret;
   }
   public E getFirst() throws NoSuchElementException {
@@ -103,5 +119,8 @@ public class MyDeque<E> {
     System.out.println(fhfh);
     System.out.println("removed: " + fhfh.removeLast());
     System.out.println(fhfh);
+    fhfh.addLast(3);
+    System.out.println(fhfh);
+    System.out.println("size: " + fhfh.size());
   }
 }
