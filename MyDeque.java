@@ -101,5 +101,7 @@ public class MyDeque<E> {
     System.out.println(fhfh);
     System.out.println("removed: " + fhfh.removeFirst());
     System.out.println(fhfh);
+    System.out.println("removed: " + fhfh.removeLast());
+    System.out.println(fhfh);
   }
 }
