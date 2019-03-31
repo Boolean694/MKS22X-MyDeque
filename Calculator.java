@@ -3,14 +3,10 @@ public class Calculator {
     String[] chli = inp.split(" ");
     MyDeque<Double> dq = new MyDeque<Double>(chli.length * 2);
     for(int q = 0; q < chli.length; q++) {
-      try{dq.addLast(Double.parseDouble(chli[q])); chli[q] = "";}
-      catch(NumberFormatException bsdf) {}
-    }
-    for(int q = 0; q < chli.length; q++) {
-      if(chli[q] != "") {
-        double f = dq.removeLast();
-        double s = dq.removeLast();
-        double res;
+      if(chli[q].equals("+") || chli[q].equals("-") || chli[q].equals("*") || chli[q].equals("/")) {
+        Double f = dq.removeLast();
+        Double s = dq.removeLast();
+        Double res;
         if(chli[q] == "+") {
           res = f + s;
           dq.addLast(res);
@@ -31,6 +27,9 @@ public class Calculator {
           res = f % s;
           dq.addLast(res);
         }
+      }
+      else {
+        dq.addLast(Double.parseDouble(chli[q]));
       }
       System.out.println(dq);
     }
